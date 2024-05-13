@@ -40,3 +40,17 @@ function divide(operandOne, operandTwo) {
 
     return operandOne / operandTwo;
 }
+
+/**
+ * Carry out the arithmetic operation
+ * @param {Number} operandOne The first operand of the operation
+ * @param {Number} operandTwo The second operand of the operation
+ * @param {String} operator The operator to use
+ * @returns The result of calling one of the arithmetic functions on the operands
+ */
+function operate(operandOne, operandTwo, operator) {
+    if (operator === '+') return add(operandOne, operandTwo);
+    if (operator === '-') return subtract(operandOne, operandTwo);
+    if (operator === '*') return multiply(operandOne, operandTwo);
+    if (operator === '/') return divide(operandOne, operandTwo);
+}
