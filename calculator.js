@@ -54,3 +54,12 @@ function operate(operandOne, operandTwo, operator) {
     if (operator === '*') return multiply(operandOne, operandTwo);
     if (operator === '/') return divide(operandOne, operandTwo);
 }
+
+// Start the application
+(function main() {
+    const firstOperand = [];
+    const secondOperand = [];
+    let activeOperand = firstOperand;
+    let operator;
+    const calculator = document.querySelector('[data-calculator]');
+})();
