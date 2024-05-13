@@ -72,4 +72,12 @@ function operate(operandOne, operandTwo, operator) {
         activeOperand = firstOperand;
         operator = '';
     }
+
+    /**
+     * Update the display
+     * @param {String} displayContent The content to be written to the display
+     */
+    function updateInterface(displayContent) {
+        calculator.querySelector('.calculator__display').textContent = displayContent;
+    }
 })();
