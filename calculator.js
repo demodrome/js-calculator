@@ -62,4 +62,14 @@ function operate(operandOne, operandTwo, operator) {
     let activeOperand = firstOperand;
     let operator;
     const calculator = document.querySelector('[data-calculator]');
+
+    /**
+     * Wipe all existing data
+     */
+    function clearData() {
+        firstOperand.splice(0);
+        secondOperand.splice(0);
+        activeOperand = firstOperand;
+        operator = '';
+    }
 })();
