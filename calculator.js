@@ -69,7 +69,6 @@ function operate(operandOne, operandTwo, operator) {
     function clearData() {
         firstOperand.splice(0);
         secondOperand.splice(0);
-        activeOperand = firstOperand;
         operator = '';
     }
 
@@ -80,4 +79,70 @@ function operate(operandOne, operandTwo, operator) {
     function updateInterface(displayContent) {
         calculator.querySelector('.calculator__display').textContent = displayContent;
     }
+
+    /**
+     * Handle calculator events
+     * @param {Object} event The event object
+     * @returns 
+     */
+    function handleCalculatorInput(event) {
+        // Exit handler if event target wasn't a button
+        const pressedButton = event.target;
+        if(event.target.tagName !== 'BUTTON') return;
+
+        // Button types determined by the data attribute
+        if (pressedButton.hasAttribute('data-number')) {
+            activeOperand.push(Number.parseInt(pressedButton.value));
+            updateInterface(activeOperand.join(''));
+        }
+
+        if (pressedButton.hasAttribute('data-function')) {
+            /**
+             * If a function button is clicked when the second operand is the active
+             * one (meaning both operands should be populated): 
+             *  - perform the calculation
+             *  - prep for next calculation
+             *      - wipe existing data
+             *      - populate first operand with the result of the calculation
+             *      - update the ui
+             */
+            if (activeOperand === secondOperand && secondOperand[0]) {
+                const tempOperand = operate(
+                    Number.parseInt(firstOperand.join('')),
+                    Number.parseInt(secondOperand.join('')),
+                    operator
+                );
+
+                clearData();
+                operator = pressedButton.value;
+                firstOperand.push(tempOperand);
+                updateInterface(firstOperand.join(''));
+
+                return;
+            }
+
+            // Get the operator
+            operator = pressedButton.value;
+
+            // Switch the active operand
+            activeOperand = secondOperand;
+        }
+
+        // Perform the calculation and update the UI
+        if (pressedButton.hasAttribute('data-equals')) {
+            const result = operate(
+                Number.parseInt(firstOperand.join('')),
+                Number.parseInt(secondOperand.join('')),
+                operator
+            );
+
+            clearData();
+            firstOperand.push(result);
+            updateInterface(result);
+            activeOperand = secondOperand;
+        }
+    }
+
+    // Append listener to calculator
+    calculator.addEventListener('click', handleCalculatorInput);
 })();
