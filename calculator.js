@@ -140,6 +140,12 @@ function operate(operandOne, operandTwo, operator) {
             activeOperand = secondOperand;
         }
 
+        if (pressedButton.hasAttribute('data-clear')) {
+            clearData();
+            updateInterface('0');
+            activeOperand = firstOperand;
+        }
+
         // Perform the calculation and update the UI
         if (pressedButton.hasAttribute('data-equals')) {
             runCalculation(pressedButton);

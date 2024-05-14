@@ -118,5 +118,8 @@ a:hover {
 .calculator__btn--function {
     background-color: var(--color-font-accent);
     color: var(--color-font-light);
+}
+
+.--text-lg {
     font-size: 32px;
 }
