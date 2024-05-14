@@ -81,6 +81,23 @@ function operate(operandOne, operandTwo, operator) {
     }
 
     /**
+     * Perform the calculation and update UI
+     * @param {HTMLElement} pressedButton The pressed button
+     */
+    function runCalculation(pressedButton) {
+        const result = operate(
+            Number.parseFloat(firstOperand.join('')),
+            Number.parseFloat(secondOperand.join('')),
+            operator
+        );
+
+        clearData();
+        operator = pressedButton.value;
+        firstOperand.push(result);
+        updateInterface(firstOperand.join(''));
+    }
+
+    /**
      * Handle calculator events
      * @param {Object} event The event object
      * @returns 
@@ -112,17 +129,7 @@ function operate(operandOne, operandTwo, operator) {
              *      - update the ui
              */
             if (activeOperand === secondOperand && secondOperand[0]) {
-                const tempOperand = operate(
-                    Number.parseFloat(firstOperand.join('')),
-                    Number.parseFloat(secondOperand.join('')),
-                    operator
-                );
-
-                clearData();
-                operator = pressedButton.value;
-                firstOperand.push(tempOperand);
-                updateInterface(firstOperand.join(''));
-
+                runCalculation(pressedButton);
                 return;
             }
 
@@ -135,15 +142,7 @@ function operate(operandOne, operandTwo, operator) {
 
         // Perform the calculation and update the UI
         if (pressedButton.hasAttribute('data-equals')) {
-            const result = operate(
-                Number.parseFloat(firstOperand.join('')),
-                Number.parseFloat(secondOperand.join('')),
-                operator
-            );
-
-            clearData();
-            firstOperand.push(result);
-            updateInterface(result);
+            runCalculation(pressedButton);
             activeOperand = secondOperand;
         }
     }
