@@ -1,3 +1,20 @@
+:root {
+    /* Colours */
+    --color-ui-light: white;
+    --color-ui-mid: gray;
+    --color-ui-dark: black;
+    --color-font-light: white;
+    --color-font-mid: gray;
+    --color-font-dark: black;
+    --color-font-accent: orange;
+
+    /* Modifiers */
+    --border-rounded: 10px;
+    --padding-sm: 5px;
+    --padding-md: 15px;
+    --padding-lg: 25px;
+}
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -10,9 +27,15 @@ html, body {
 
 body {
     align-items: center;
-    font-family: "Orbitron", sans-serif;
+    background: url('./images/pexels-instawally-176851.jpg');
+    background-position: center;
+    background-size: cover;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    font-family: "Unica One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    justify-content: space-between;
 }
 
 button {
@@ -20,50 +43,55 @@ button {
     border: none
 }
 
+.header, footer {
+    padding: 20px;
+}
+
 .calculator {
-    background-color: #333;
-    border-radius: 5px;
-    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-rounded);
+    padding: var(--padding-md);
+    width: 250px;
 }
 
 .calculator__display {
-    background-color: gray;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    color: white;
+    align-items: center;
+    background-color: var(--color-ui-mid);
+    border-radius: var(--border-rounded);
+    color: var(--color-font-light);
+    display: flex;
+    font-size: 20px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: var(--padding-md);
     text-align: right;
-    padding: 15px;
-    font-size: 24px;
+}
+
+.calculator__row {
+    display: flex;
+    gap: 10px;
 }
 
 .caltulator__keys {
     display: flex;
-    gap: 3px;
-}
-
-.calculator__primary {
-    display: flex;
-    flex-wrap: wrap-reverse;
-    gap: 3px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .calculator__btn {
+    border-radius: var(--border-rounded);
     cursor: pointer;
     flex: 1 1 50px;
     height: 50px;
-    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.calculator__btn:hover {
+    transform: scale(1.1);
 }
 
 .calculator__btn--function {
-    background-color: orangered;
-    color: white;
-    font-size: 26px;
-    font-weight: bold;
-}
-
-.calculator__function {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    width: 50px;
+    background-color: var(--color-font-accent);
+    font-size: 32px;
 }
