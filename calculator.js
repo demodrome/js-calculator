@@ -92,7 +92,12 @@ function operate(operandOne, operandTwo, operator) {
 
         // Button types determined by the data attribute
         if (pressedButton.hasAttribute('data-number')) {
-            activeOperand.push(Number.parseInt(pressedButton.value));
+            activeOperand.push(pressedButton.value);
+            updateInterface(activeOperand.join(''));
+        }
+
+        if (pressedButton.hasAttribute('data-decimal')) {
+            activeOperand.push(pressedButton.value);
             updateInterface(activeOperand.join(''));
         }
 
@@ -108,8 +113,8 @@ function operate(operandOne, operandTwo, operator) {
              */
             if (activeOperand === secondOperand && secondOperand[0]) {
                 const tempOperand = operate(
-                    Number.parseInt(firstOperand.join('')),
-                    Number.parseInt(secondOperand.join('')),
+                    Number.parseFloat(firstOperand.join('')),
+                    Number.parseFloat(secondOperand.join('')),
                     operator
                 );
 
@@ -131,8 +136,8 @@ function operate(operandOne, operandTwo, operator) {
         // Perform the calculation and update the UI
         if (pressedButton.hasAttribute('data-equals')) {
             const result = operate(
-                Number.parseInt(firstOperand.join('')),
-                Number.parseInt(secondOperand.join('')),
+                Number.parseFloat(firstOperand.join('')),
+                Number.parseFloat(secondOperand.join('')),
                 operator
             );
 
