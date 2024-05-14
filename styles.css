@@ -1,12 +1,11 @@
 :root {
     /* Colours */
-    --color-ui-light: white;
-    --color-ui-mid: gray;
-    --color-ui-dark: black;
-    --color-font-light: white;
-    --color-font-mid: gray;
-    --color-font-dark: black;
-    --color-font-accent: orange;
+    --color-ui-light: rgba(255, 255, 255, 1);
+    --color-ui-light-tp: rgba(255, 255, 255, 0.2);
+    --color-ui-mid: rgba(35, 45, 63, 0.5);
+    --color-ui-dark: #0F0F0F;
+    --color-font-light: #fafafa;
+    --color-font-accent: #FF4C29;
 
     /* Modifiers */
     --border-rounded: 10px;
@@ -49,9 +48,10 @@ button {
 
 .calculator {
     background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--color-ui-light-tp);
     border-radius: var(--border-rounded);
     padding: var(--padding-md);
-    width: 250px;
+    width: 270px;
 }
 
 .calculator__display {
@@ -80,18 +80,23 @@ button {
 }
 
 .calculator__btn {
+    background-color: var(--color-ui-light-tp);
     border-radius: var(--border-rounded);
+    color: var(--color-font-light);
     cursor: pointer;
     flex: 1 1 50px;
     height: 50px;
-    transition: transform 0.3s;
+    transition: all 0.3s;
 }
 
 .calculator__btn:hover {
+    background-color: var(--color-ui-light);
+    color: #333;
     transform: scale(1.1);
 }
 
 .calculator__btn--function {
     background-color: var(--color-font-accent);
+    color: var(--color-font-light);
     font-size: 32px;
 }
