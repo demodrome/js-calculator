@@ -146,6 +146,13 @@ function operate(operandOne, operandTwo, operator) {
             activeOperand = firstOperand;
         }
 
+        if (pressedButton.hasAttribute('data-back')) {
+            if (activeOperand.length >= 0) {
+                activeOperand.pop();
+                updateInterface(activeOperand.join('') || 0);
+            }
+        }
+
         // Perform the calculation and update the UI
         if (pressedButton.hasAttribute('data-equals')) {
             runCalculation(pressedButton);
